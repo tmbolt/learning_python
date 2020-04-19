@@ -9,6 +9,37 @@
 seq = 'ACGACGCAGGAGGAGAGTTTCAGAGATCACGAATACATCCATATTACCCAGAGAGAG'
 w = 11
 
+gc_count = 0
+
+for i in range(w):
+    if seq[i] == 'C' or seq[i] == 'G':
+        gc_count += 1
+print(0, seq[0: w], f'{gc_count/w:.4f}')
+
+for i in range(1, len(seq) - w + 1):
+    prev = seq[i - 1]
+    next = seq[i + w - 1]
+    if prev == 'G' or prev == 'C':
+        gc_count -= 1
+    if next == 'G' or next == 'C':
+        gc_count += 1
+    print(i, seq[i: i+w], f'{gc_count/w:.4f}')
+
+
+"""
+gc_count = 0
+
+for i in range(0,len(seq) + 1):
+    if i >= w:
+        print(f'{i-w:2} {seq[i-w:i]}, {gc_count/w:.4f}')
+        if i < len(seq):
+            if  seq[i] == 'G' or seq[i]  == 'C': gc_count += 1
+            if  seq[i - w] == 'G' or seq[i - w]  == 'C': gc_count -= 1
+    else:
+        if  seq[i] == 'G' or seq[i]  == 'C': gc_count += 1   
+"""
+
+"""
 for frame in range(len(seq) - w + 1):
     dna = seq[frame: frame + w]
     c = 'C'
@@ -30,7 +61,7 @@ for frame in range(len(seq) - w + 1):
 #needed internet to figure out
 #couldn't count g and c in same line
 
-
+"""
 
 """
 0 ACGACGCAGGA 0.6364
